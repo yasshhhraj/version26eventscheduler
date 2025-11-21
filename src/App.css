@@ -1,38 +1,178 @@
 .App {
-  text-align: center;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  padding: 16px;
+  color: #222;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+h1 {
+  margin: 0 0 12px;
+  font-size: 22px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.timeline {
   display: flex;
   flex-direction: column;
+  gap: 8px;
+}
+
+.time-header {
+  display: grid;
+  grid-auto-rows: 28px;
+  margin-left: 7.5em;
+  border-left: 1px solid #e4e7eb;
+  border-right: 1px solid #e4e7eb;
+}
+
+.time-cell {
+  border-top: 1px solid #e4e7eb;
+  border-bottom: 1px solid #e4e7eb;
+  border-left: 1px solid #eef2f7; /* tick per interval */
+  font-size: 11px;
+  color: #667085;
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.time-cell.hour-start {
+  background: #f8fafc;
+  font-weight: 600;
+  color: #475467;
+  border-left: 2px solid #cbd5e1; /* thicker at hour */
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.row {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  align-items: stretch;
+}
+
+.row + .row {
+  border-top: 1px solid #e4e7eb;
+}
+
+.row-label {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 8px;
+  background: #fafafa;
+  border-left: 1px solid #e4e7eb;
+  border-right: 1px solid #e4e7eb;
+  font-weight: 600;
+}
+
+.clear-btn {
+  background: #fff;
+  border: 1px solid #e4e7eb;
+  border-radius: 6px;
+  padding: 4px 8px;
+  font-size: 12px;
+  cursor: pointer;
+}
+.clear-btn:hover {
+  background: #f3f4f6;
+}
+
+.row-grid {
+  display: grid;
+  grid-auto-rows: 44px;
+  border: 1px solid #e4e7eb;
+  border-left: none;
+}
+
+.slot {
+  border-left: 1px solid #eef2f7; /* tick per interval */
+  position: relative;
+  user-select: none;
+  cursor: crosshair;
+}
+
+/* Stronger marker at hour boundaries */
+.slot.hour-boundary {
+  border-left-color: #cbd5e1;
+  border-left-width: 2px;
+}
+
+/* Cursor hints while hovering an existing event */
+.slot.handle-left,
+.slot.handle-right {
+  cursor: ew-resize;
+}
+.slot.draggable {
+  cursor: move;
+}
+
+.slot.selecting {
+  background: rgba(99, 102, 241, 0.18);
+  outline: 1px dashed #6366f1;
+}
+
+.slot.event {
+  background: rgba(59, 130, 246, 0.18);
+}
+.slot.event.start {
+  border-left: 2px solid #3b82f6;
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+}
+.slot.event.middle {
+  background: rgba(59, 130, 246, 0.16);
+}
+.slot.event.end {
+  border-right: 2px solid #3b82f6;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+.slot.event.single {
+  border-left: 2px solid #3b82f6;
+  border-right: 2px solid #3b82f6;
+  border-radius: 6px;
+}
+
+.event-title {
+  position: absolute;
+  top: 50%;
+  left: 8px;
+  transform: translateY(-50%);
+  font-size: 12px;
+  font-weight: 600;
+  color: #1f2937;
+  white-space: nowrap;
+  pointer-events: none;
+  padding-right: 22px; /* leave space for delete */
+}
+
+/* Inline delete button shown at the start cell of an event */
+.event-delete {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 18px;
+  height: 18px;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  border-radius: 4px;
+  color: #111827;
+  font-size: 12px;
+  line-height: 16px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2;
+}
+.slot.event.start:hover .event-delete,
+.slot.event.single:hover .event-delete {
+  display: inline-flex;
+}
+.event-delete:hover {
+  background: #f3f4f6;
+}
+
+.help {
+  margin-top: 10px;
+  font-size: 12px;
+  color: #667085;
 }
