@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/version26eventscheduler/static/css/main.e3188ec4.css",
+    "main.js": "/version26eventscheduler/static/js/main.45f9f88b.js",
+    "static/js/453.f8efe6cd.chunk.js": "/version26eventscheduler/static/js/453.f8efe6cd.chunk.js",
+    "index.html": "/version26eventscheduler/index.html",
+    "main.e3188ec4.css.map": "/version26eventscheduler/static/css/main.e3188ec4.css.map",
+    "main.45f9f88b.js.map": "/version26eventscheduler/static/js/main.45f9f88b.js.map",
+    "453.f8efe6cd.chunk.js.map": "/version26eventscheduler/static/js/453.f8efe6cd.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e3188ec4.css",
+    "static/js/main.45f9f88b.js"
+  ]
+}
